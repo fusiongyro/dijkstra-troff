@@ -1,0 +1,31 @@
+%A Gawlik, H.J.
+%T MIRFAC: A Compiler Based on Standard Mathematical Notation and Plain English.
+%J Comm. ACM
+%V 6
+%N 9
+%D September 1963
+%K mirfac
+
+%A Wells, Mark B
+%T MADCAP: A Scientific Compiler is a Displayed Formula Textbook Language
+%J Comm. ACM
+%V 4
+%N 1
+%D January 1961
+%K madcap
+
+%A Dijkstra E.W.
+%T On the Design of Machine Independent Programming Languages.
+%E Goodman, R
+%J Annual Review in Automatic Programming
+%V III
+%P Pergamon Press
+%D 1961
+%K design
+
+%A McCarthy, John
+%T A Basis for a Mathematical Theory of Computation, Preliminary Report
+%O Western Joist Computer Conference
+%D 1961
+%K theory
+
