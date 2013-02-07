@@ -1,0 +1,55 @@
+.do xflag 3
+.nr QUOTE_INDENT 30
+.ie n .nr PARAGRAPH_INDENT 5
+.el .nr PARAGRAPH_INDENT 2
+\".if !d lq .ds lq <<
+\".if !d rq .ds rq >>
+.de *HD
+.sp 0.5i
+.tl ```EWD\\*[EWD_NUMBER]
+.sp
+..
+.wh 0 *HD
+.de EWD
+\" First take the number and make that the right side header
+\" Then prepend the initials EWD to all the arguments including the number and make that the title on the left.
+.ds EWD_NUMBER \\$1
+.tl ```EWD\\*[EWD_NUMBER]
+.shift 1
+\\fB\\$*\\fR
+..
+.de QUOTE
+.in +\\n[QUOTE_INDENT]
+\" The argument becomes the signature line.
+\" The text after is the paragraph itself
+.ds QUOTE_ATTRIBUTION \\$1
+\(lq\c
+..
+.de ENDQUOTE
+\(rq
+.br
+\\(em \\*[QUOTE_ATTRIBUTION]
+.in -\\n[QUOTE_INDENT]
+..
+.de PP
+\" Begin an indented paragraph
+.br
+.ti \n[PARAGRAPH_INDENT]
+..
+.de CLOSING
+\" The argument is usually a date, and is formatted flush-right
+.ad r
+\\$*
+.br
+.ad n
+..
+.de LP
+\" Begin an unindented paragraph
+.br
+..
+.de SIGNATURE
+\" Eventually should automatically insert the appropriate signature.
+\" For now, it should just disable fill
+.nf
+.ad l
+..

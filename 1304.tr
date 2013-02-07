@@ -1,50 +1,7 @@
-.do xflag 3
-.de EWD
-\" First take the number and make that the right side header
-\" Then prepend the initials EWD to all the arguments including the number and make that the title on the left.
-.tl ```EWD\\$1
-.shift 1
-\\fB\\$*\\fR
-..
-.de QUOTE
-.in +30
-\" The argument becomes the signature line.
-\" The text after is the paragraph itself
-.ds QUOTE_ATTRIBUTION \\$1
-\(lq
-..
-.de ENDQUOTE
-\(rq
-.br
-\\(em \\*[QUOTE_ATTRIBUTION]
-.in -30
-..
-.de PP
-\" Begin an indented paragraph
-.br
-.ti 5m
-..
-.de CLOSING
-\" The argument is usually a date, and is formatted flush-right
-.ad r
-\\$*
-.br
-.ad n
-..
-.de LP
-\" Begin an unindented paragraph
-.br
-..
-.de SIGNATURE
-\" Eventually should automatically insert the appropriate signature.
-\" For now, it should just disable fill
-.nf
-.ad l
-..
+.so dijkstra.tmac
 .EWD 1304-0 The end of Computing Science?
 .QUOTE "Sir Antony Hoare, 1980."
-The price of reliability is the pursuit of the utmost simplicity. It
-is a price which the very rich find most hard to pay.
+The price of reliability is the pursuit of the utmost simplicity. It is a price which the very rich find most hard to pay.\c
 .ENDQUOTE
 .PP
 In academia, in industry, and in the commercial world, there is a widespread belief that computing science as such has been all but completed and that, consequently, computing has \*Qmatured\*U from a theoretical topic for the scientists to a practical issue for the engineers, the managers and the entrepreneurs, i.e. mostly people\(emand there are many of those!\(emwho can accept the application of science for the obvious benefits, but feel rather uncomfortable with its creation because they don't understand what the doing of research, with its intangible goals and its uncertain rewards, entails. This widespread belief, however, is only correct if we identify the goals of computing science with what has been accomplished and forget those goals that we have failed to reach, even if they are too important to be ignored.
@@ -64,3 +21,4 @@ Department of computer Sciences
 The University of Texas at Austin
 Austin, TX 78712 - 1188
 USA
+
