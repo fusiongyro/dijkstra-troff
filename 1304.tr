@@ -1,3 +1,4 @@
+.do xflag 3
 .de EWD
 \" First take the number and make that the right side header
 \" Then prepend the initials EWD to all the arguments including the number and make that the title on the left.
@@ -10,10 +11,10 @@
 \" The argument becomes the signature line.
 \" The text after is the paragraph itself
 .ds QUOTE_ATTRIBUTION \\$1
-\\*Q
+\(lq
 ..
 .de ENDQUOTE
-\\*U
+\(rq
 .br
 \\(em \\*[QUOTE_ATTRIBUTION]
 .in -30
@@ -21,7 +22,7 @@
 .de PP
 \" Begin an indented paragraph
 .br
-.ti 5e
+.ti 5m
 ..
 .de CLOSING
 \" The argument is usually a date, and is formatted flush-right
@@ -46,7 +47,7 @@ The price of reliability is the pursuit of the utmost simplicity. It
 is a price which the very rich find most hard to pay.
 .ENDQUOTE
 .PP
-In academia, in industry, and in the commercial world, there is a widespread belief that computing science as such has been all but completed and that, consequently, computing has \*Qmatured\*U from a theoretical topic for the scientists to a practical issue for the engineers, the managers and the entrepreneurs, i.e. mostly people ?and there are many of those!? who can accept the application of science for the obvious benefits, but feel rather uncomfortable with its creation because they don't understand what the doing of research, with its intangible goals and its uncertain rewards, entails. This widespread belief, however, is only correct if we identify the goals of computing science with what has been accomplished and forget those goals that we have failed to reach, even if they are too important to be ignored.
+In academia, in industry, and in the commercial world, there is a widespread belief that computing science as such has been all but completed and that, consequently, computing has \*Qmatured\*U from a theoretical topic for the scientists to a practical issue for the engineers, the managers and the entrepreneurs, i.e. mostly people\(emand there are many of those!\(emwho can accept the application of science for the obvious benefits, but feel rather uncomfortable with its creation because they don't understand what the doing of research, with its intangible goals and its uncertain rewards, entails. This widespread belief, however, is only correct if we identify the goals of computing science with what has been accomplished and forget those goals that we have failed to reach, even if they are too important to be ignored.
 .PP
 I would therefore like to posit that computing's central challenge, viz. \*QHow not to make a mess of it,\*U has not been met. On the contrary, most of our systems are much more complicated than can be considered healthy, and are too messy and chaotic to be used in comfort and confidence. The average customer of the computing industry has been served so poorly that he expects his system to crash all the time, and we witness a massive worldwide distribution of bug-ridden software for which we should be deeply ashamed.
 .PP
