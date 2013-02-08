@@ -1,42 +1,26 @@
-.so refer.tmac
 .ds [. [
 .ds .] ]
 .nr QUOTE_INDENT 30
-.ie n .nr PARAGRAPH_INDENT 5
-.el .nr PARAGRAPH_INDENT 2
-.de *HD
-.if t .sp 0.5i
-.tl ```EWD\\*[EWD_NUMBER]
-.sp
-..
-.de *FT
-.bp
-..
-.wh -0.8i *FT
 .de EWD
 .ds EWD_NUMBER \\$1
+.OH ```EWD\\*[EWD_NUMBER]\-%
+.EH ```EWD\\*[EWD_NUMBER]\-%
 .shift 1
-.*HD
-.wh 0 *HD
-\\fB\\$*\\fR
+\\fB\\s[+2]\\$*\\s[-2]\\fR
+.sp
 ..
 .de QUOTE
 .in +\\n[QUOTE_INDENT]
 \" The argument becomes the signature line.
 \" The text after is the paragraph itself
 .ds QUOTE_ATTRIBUTION \\$*
-\(lq\c
+\*Q\c
 ..
 .de ENDQUOTE
-\(rq
+\*U
 .br
 \\(em \\*[QUOTE_ATTRIBUTION]
 .in -\\n[QUOTE_INDENT]
-..
-.de PP
-\" Begin an indented paragraph
-.br
-.ti \n[PARAGRAPH_INDENT]
 ..
 .de CLOSING
 \" The argument is usually a date, and is formatted flush-right
@@ -45,13 +29,10 @@
 .br
 .ad n
 ..
-.de LP
-\" Begin an unindented paragraph
-.br
-..
 .de SIGNATURE
 \" Eventually should automatically insert the appropriate signature.
 \" For now, it should just disable fill
 .nf
 .ad l
 ..
+.P1
