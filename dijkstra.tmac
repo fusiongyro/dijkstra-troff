@@ -1,21 +1,16 @@
-.do xflag 3
 .nr QUOTE_INDENT 30
 .ie n .nr PARAGRAPH_INDENT 5
 .el .nr PARAGRAPH_INDENT 2
-\".if !d lq .ds lq <<
-\".if !d rq .ds rq >>
 .de *HD
-.sp 0.5i
+.if t .sp 0.5i
 .tl ```EWD\\*[EWD_NUMBER]
 .sp
 ..
-.wh 0 *HD
 .de EWD
-\" First take the number and make that the right side header
-\" Then prepend the initials EWD to all the arguments including the number and make that the title on the left.
 .ds EWD_NUMBER \\$1
-.tl ```EWD\\*[EWD_NUMBER]
 .shift 1
+.*HD
+.wh 0 *HD
 \\fB\\$*\\fR
 ..
 .de QUOTE
