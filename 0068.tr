@@ -25,7 +25,7 @@ If, however, we instruct a machine to do something we should be aware of the fac
 .PP
 I go on quoting Mr. Gawlik: \*Q... MIRFAC has been developed to satisfy the basic criterion that its problem statements should be intelligible to non-programmers, with the double aim that the user should not be required to learn any language that he does not already know and that the problem statement can be checked for correctness by somebody who understands the problem but who may know nothing of programming.\*U
 .PP
-I do not see the point of Mr. Gawlik's \*Qbasic criterion\*U. Elsewhere (see 
+I do not see the point of Mr. Gawlik's \*Qbasic criterion.\*U Elsewhere (see 
 .[
 [ dijkstra
 .]]) 
