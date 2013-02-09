@@ -1,6 +1,6 @@
 .so dijkstra.tmac
 .R1
-database refs.tr
+database bibliography.refer
 accumulate
 .R2
 .EWD 68 Some Comments on the Aims of MIRFAC.
