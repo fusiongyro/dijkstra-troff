@@ -1,0 +1,25 @@
+.so dijkstra.tmac
+.EQ
+delim $$
+sdefine comp % type operator font S "\v'.26m'\(de\v'-.26m'" %
+.EN
+.EWD 1061 Composition, \[*l]-calculus, and some more
+.PP
+The other day I saw\(emcourtesy Tony Hoare\(emfor the associativity of functional composition a proof of the following structure.
+.PP
+For functions $f$, $g$, and $h$ we have to show: 
+.IP (0)
+$ f comp "\ "(g comp h) = (f comp g) comp h $
+.LP
+where $comp$ is defined by: for functions $p$, $q$
+.IP (1)
+$ p comp q = (\[*l]z: p.(q.z)) $
+.PP
+from the \[*l]-calculus we use
+.IP (2)
+$(\[*l]x: E).y =$ \*QE with y substituted for x\*U
+.PP
+We observe for any $f$, $g$, $h$
+$ = {(1) with p, q := f, (g comp h)}$
+$(\[*l]z: f.((g comp h).z))$
+$={(1) with p, q, z := g, h, x}$
