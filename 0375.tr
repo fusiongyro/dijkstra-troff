@@ -1,29 +1,42 @@
 .so dijkstra.tmac
+.nr EQno 0 1
+.ds EQnxt \Z'\h'0.5m'(\\n+[EQno]\\$1)'
+.ds EQnow \Z'\h'0.5m'(\\n[EQno]\\$1)'
 .EQ
 delim $$
+sdefine <sent> % roman "<sent>" %
+sdefine and    % roman "\fBand\fR" %
+sdefine <exp>  % roman "<exp>" %
+sdefine <term> % roman "<term>" %
+sdefine <operator> % roman "<operator>" %
+sdefine <digit> % roman "<digit>" %
 .EN
 .EWD 375 A non algebraic example of a constructive correctness proof.
 .PP
 We consider a text built from five types of characters, viz. digits, operators, \*Q(\*U, \*Q)\*U, and \*Q;\*U. The text can be read from left to right by means of the primitive \*Qmove\*U which assigns to the variable named \*Qx\*U the next character of the text. Initially the value of x is undefined, after the first execution of \*Qmove,\*U x equals the left-most character of the text. The text has infinite length and it is required to write a recognizer called \*Qsent\*U that has to establish whether the text starts with a <sent>, given by the following syntax.
-.RS
 .sp
-<sent>	::=	<exp> ;
-.br
-<exp>	::=	<term> {<operator> <term>}
-.br
-<term>	::=	<digit> {<digit>} | (<exp>)			(1)
-.RE
+.EQ
+<sent> ~ mark ::= <exp> ;
+.EN
+.EQ 
+<exp> ~ lineup ::= <term> "{" <operator> <term> "}"
+.EN
+.EQ \*[EQnxt]
+<term> ~ lineup ::= <digit> "{" <digit> "}" | (<exp>)
+.EN
 .sp
 .LP
 Here { ... } should be read as \*Qzero or more times the enclosed.\*U An alternative syntax would have been
-.RS
 .sp
-<sent>	::=	<exp> ;
-.br
-<exp>	::=	{<term> <operator>} <term>
-.br
-<term>	::=	{<digit>} <digit> | (<exp>)			(2)
-.RE
+.EQ 
+<sent> ~ mark ::= <exp> ;
+.EN
+.EQ
+<exp> ~ lineup ::= "{" <term> <operator> "}" <term>
+.EN
+.EQ \*[EQnxt]
+<term> ~ lineup ::= "{" <digit> "}" <digit> | (<exp>)
+.EN
 .sp
 .LP
 We regard (1) and (2) as trivially equivalent.
@@ -42,12 +55,13 @@ We now want to express two things: if a <sent> is found, S should equal that sen
 .RE
 .LP
 Similarly we introduce
-.RS
 .sp
-<bo exp>	::=	<pbo exp> | <exp>			(4)
-.br
-<bo term>	::=	<pbo term> | <term>			(5)
-.RE
+.EQ \*[EQnxt]
+<bo exp> mark ::= <pbo exp> | <exp>
+.EN
+.EQ
+<bo term> lineup ::= <pbo term> | <term>
+.EN
 .sp
 .LP
 Note: A <pbo Y> has \fBnot\fR been defined as a string that by a non-empty extension can be transformed into a <Y>: it has also been required not to be a <Y> all by itself.
@@ -55,12 +69,12 @@ Note: A <pbo Y> has \fBnot\fR been defined as a string that by a non-empty exten
 In terms of S and the notion <pbo sent> we now specify the desired net effect of \*Qsent\*U by requiring that upon completion
 .RS
 .sp
-.EQ
+.EQ \*[EQnxt]
 S - x = roman "<pbo sent> \fBand\fR"
 .br
 S not equal roman "<pbo sent> \fBand\fR"
 .br
-c = [S = <sent>]			(6)
+c = [S = <sent>]
 .br
 .EN
 .sp
