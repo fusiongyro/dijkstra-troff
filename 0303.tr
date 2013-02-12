@@ -8,7 +8,8 @@ delim $$
 All speakers of the lecture series have received very strict instructions as how to arrange their speech; as a result I expect all speeches to be similar to each other. Mine will not differ, I adhere to the instructions. They told us: first tell what you are going to say, then say it and finally summarize what you have said.
 .PP
 My story consists of four points.
-.IP 1) 
+.RS
+.IP 1) 3n
 I shall argue that our programs should be correct
 .IP 2)
 I shall argue that debugging is an inadequate means for achieving that goal and that we must prove the correctness of programs
@@ -16,6 +17,7 @@ I shall argue that debugging is an inadequate means for achieving that goal and 
 I shall argue that we must tailor our programs to the proof requirements 
 .IP 4)
 I shall argue that programming will become more and more an activity of mathematical nature. 
+.RE
 .PP
 The starting point of my considerations is to be found at the \*Qsoftware failure.\*U A few years ago the wide-spread existence of this regrettable phenomenon was established beyond doubt; as far as my information tells me, the software failure is still there as vigorous as ever and its effects are sufficiently alarming to justify our concern and attention. What, however, is it?
 .PP
