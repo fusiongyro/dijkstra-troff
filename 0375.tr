@@ -1,0 +1,32 @@
+.so dijkstra.tmac
+.EWD 375 A non algebraic example of a constructive correctness proof.
+.PP
+We consider a text built from five types of characters, viz. digits, operators, \*Q(\*U, \*Q)\*U, and \*Q;\*U. The text can be read from left to right by means of the primitive \*Qmove\*U which assigns to the variable named \*Qx\*U the next character of the text. Initially the value of x is undefined, after the first execution of \*Qmove,\*U x equals the left-most character of the text. The text has infinite length and it is required to write a recognizer called \*Qsent\*U that has to establish whether the text starts with a <sent>, given by the following syntax.
+.RS
+.sp
+<sent>	::=	<exp> ;
+.br
+<exp>	::=	<term> {<operator> <term>}
+.br
+<term>	::=	<digit> {<digit>} | (<exp>)			(1)
+.RE
+.sp
+.LP
+Here { ... } should be read as \*Qzero or more times the enclosed.\*U An alternative syntax would have been
+.RS
+.sp
+<sent>	::=	<exp> ;
+.br
+<exp>	::=	{<term> <operator>} <term>
+.br
+<term>	::=	{<digit>} <digit> | (<exp>)			(2)
+.RE
+.sp
+.LP
+We regard (1) and (2) as trivially equivalent.
+.PP
+In order to carry out this investigation, the routine has at its disposal five boolean functions, defined when x has a value, viz. digit(x), operator(x), open(x), close(x) and semi(x), such that always exactly one of the five has the value \fBtrue\fR.
+.PP
+The result of the investigation has to be recorded in the global boolean named \*Qc\*U (short for: correct). In order to specify more rigorously the net effect to be established by a call on \*Qsent,\*U we introduce the following notations.
+.PP
+Let S be the non-empty string of characters read by \*Qsent\*U; by definition x then equals the right-most character of S and by S - x we denote the string of characters of S up to and excluding this right-most character.
