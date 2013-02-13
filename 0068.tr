@@ -1,0 +1,51 @@
+.so dijkstra.tmac
+.R1
+database bibliography.refer
+accumulate
+.R2
+.EWD 68 Some Comments on the Aims of MIRFAC.
+.PP
+Dear Editor,
+.PP
+Recently H.J. Gawlik
+.[
+[ ] mirfac
+.]
+has published an article on project MIRFAC: A Compiler Base on Standard Mathematical Notation and Plain English. Its author is aware of earlier projects along analogous lines (MADCAP and COLASL
+.[
+[ madcap
+.]]). 
+When I heard of these earlier projects I was filled with some amazement for what they aimed to seemed to me hardly a sensible thing to do. I did not raise my voice then, convinced and trusting that people would discover this for themselves in a very short time. Now, two and a half years later I am faced with the fact that the movement has not died its natural death as I had supposed it would do. This discovery has cause me some disappointment and I can only regret my earlier silence on the subject.
+.PP
+The justification for the project MIRFAC seems the opinion that what is right for communication from man to man should also be right for communication from man to machine. (This is the only interpretation which allows me to attach a meaning to Gawlik's statement \*Qthat a compiler should aim not merely to simplify programming, but to abolish it.\*U) But this opinion should not pass unchallenged!
+.PP
+If we instruct an \*Qintelligent\*U person to do something for us, we can permit ourselves all kind of sloppiness, inaccuracies, incompleteness, contradictions etc., appealing to his understanding and common sense: he is not expected to perform literally the nonsense he is ordered to do, he is expected to do what we intended to order him. And a human servant is therefore useful by virtue of his \*Qdisobedience.\*U This may be of some convenience for the master who dislikes to express himself clearly; the price paid is the non-negligible risk that the servant performs, on his own account, something completely unintended.
+.PP
+If, however, we instruct a machine to do something we should be aware of the fact that for the first time in the history of Mankind we have a servant to our disposal who really does what he has been told to do. In man-computer communication there is not only a need to be unusually precise and unambiguous, there is, at last, also a point in being so, if at least we wish to obtain the full benefits of the powerful obedient mechanical servant. Efforts aimed to conceal this new need for preciseness\(emfor the supposed benefit of the user\(emwill in fact be harmful: for at the same time they will conceal the equally new possibilities of automatic computing, of having intricate processes under complete control.
+.PP
+I go on quoting Mr. Gawlik: \*Q... MIRFAC has been developed to satisfy the basic criterion that its problem statements should be intelligible to non-programmers, with the double aim that the user should not be required to learn any language that he does not already know and that the problem statement can be checked for correctness by somebody who understands the problem but who may know nothing of programming.\*U
+.PP
+I do not see the point of Mr. Gawlik's \*Qbasic criterion.\*U Elsewhere (see 
+.[
+[ dijkstra
+.]]) 
+I have warned against the \*Q...tendency to design programming languages so that they are easily readable for a semi-professional, semi-interested reader. (Symptoms of this tendency are languages the vocabulary of which includes a wild variety of English words to be used in a nearly normal sense, and some translators that even allow a steadily expanding list of synonyms and misspellings for these words. Particularly, languages designed under commercial pressure have suffered seriously from this tendency.) It looks so attractive: `Everybody can understand it immediately.' But giving a plausible semantic interpretation to a text which one assumes to be correct and meaningful, is one thing; writing down such a text... expressing exactly what one wishes to say, may be quite a different matter!\*U On comparable grounds, John McCarthy calls \*QCOBOL... a step up a blind alley on account of its orientation towards English which is not well suited to the formal description of procedures.\*U 
+.[
+[ ] mccarthy
+.]
+.PP
+Furthermore, to set Mr. Gawlik's double aim is fooling oneself. Standard mathematical notation has been designed to describe relations and now we have to define processes. Plain English has grown out of a need of interhuman communication, to be vague and ambiguous, to tell jokes and to sing nursery rhymes, but is obviously unfit to express what has to be expressed now. One can borrow mathematical notations, one can borrow English words, but completely new semantics must be attached to them and despite its superficial similarity one creates a new language. And I think the similarity more misleading than clarifying.
+.PP
+This fear is confirmed by Mr. Gawlik's second aim, viz. \*Qthat the problem statement can be checked for correctness by somebody who understands the problem but who may know nothing of programming.\*U Of course he can check it, but the crucial point is whether he will find the errors! And of course he will not find them: for in human communication one is constantly trained to try to understand the others intentions and not to notice the nonsense. The corrector who understands the problem but knows nothing of programming, will be misled by the familiarity of the characters and the words and he will, in all probability, be satisfied if he recognizes the problem.
+.PP
+I am all in favor of clear and convenient Algorithmic Languages, but, please, let them honestly be so: to disguise them in clothes which have been tailored to other purposes can only increase the confusion.
+.SIGNATURE
+E.W. Dijkstra
+Department of Mathematics
+Technological University
+Postbox 513
+EINDHOVEN
+The Netherlands
+.[
+$LIST$
+.]

@@ -1,0 +1,191 @@
+.so dijkstra.tmac
+.nr EQno 0 1
+.ds EQnxt \Z'\h'-1.5m'(\\n+[EQno]\\$1)'
+.ds EQnow \Z'\h'-1.5m'(\\n[EQno]\\$1)'
+.EQ
+delim $$
+sdefine <sent> % roman "<sent>" %
+sdefine and    % roman "\fBand\fR" %
+sdefine <exp>  % roman "<exp>" %
+sdefine <term> % roman "<term>" %
+sdefine <operator> % roman "<operator>" %
+sdefine <digit> % roman "<digit>" %
+sdefine lb % roman "{" %
+sdefine rb % roman "}" %
+.EN
+.EWD 375 A non algebraic example of a constructive correctness proof.
+.PP
+We consider a text built from five types of characters, viz. digits, operators, \*Q(\*U, \*Q)\*U, and \*Q;\*U. The text can be read from left to right by means of the primitive \*Qmove\*U which assigns to the variable named \*Q$x$\*U the next character of the text. Initially the value of $x$ is undefined, after the first execution of \*Qmove,\*U $x$ equals the left-most character of the text. The text has infinite length and it is required to write a recognizer called \*Qsent\*U that has to establish whether the text starts with a <sent>, given by the following syntax.
+.RS
+.EQ L
+<sent> ~ mark ::= <exp> ~ ;
+.EN
+.EQ L
+<exp> ~ lineup ::= <term> ~ lb ~ <operator> ~ <term> ~ rb
+.EN
+.EQ L \*[EQnxt]
+<term> ~ lineup ::= <digit> ~ lb ~ <digit> ~ rb ~ | ~ roman "(<exp>)"
+.EN
+.RE
+.sp
+.LP
+Here { ... } should be read as \*Qzero or more times the enclosed.\*U An alternative syntax would have been
+.sp
+.EQ L 
+<sent> ~ mark ::= <exp> ;
+.EN
+.EQ L
+<exp> ~ lineup ::= lb ~ <term> ~ <operator> ~ rb ~ <term>
+.EN
+.EQ L \*[EQnxt]
+<term> ~ lineup ::= lb ~ <digit> ~ rb ~ <digit> ~ | ~ roman "(<exp>)"
+.EN
+.sp
+.LP
+We regard (1) and (2) as trivially equivalent.
+.PP
+In order to carry out this investigation, the routine has at its disposal five boolean functions, defined when $x$ has a value, viz. digit(x), operator(x), open(x), close(x) and semi(x), such that always exactly one of the five has the value \fBtrue\fR.
+.PP
+The result of the investigation has to be recorded in the global boolean named \*Qc\*U (short for: correct). In order to specify more rigorously the net effect to be established by a call on \*Qsent,\*U we introduce the following notations.
+.PP
+Let S be the non-empty string of characters read by \*Qsent\*U; by definition x then equals the right-most character of S and by S - x we denote the string of characters of S up to and excluding this right-most character.
+.PP
+We now want to express two things: if a <sent> is found, S should equal that sentence, if, however, sent has established that the text does not start with a <sent>, no more characters than are needed for this conclusion should have been read. In view of our later needs, we introduce two new syntactic categories, viz. <pbo sent> and <bo sent>. Here <pbo sent> stands for \*Qproper begin of a sentence but not a complete sentence,\*U i.e. a string of characters not forming a sentence all by itself, but that still can be extended to form a correct sentence; <bo sent>, being short for \*Qbegin of sentence,\*U is either a correct sentence all by itself, or allowing extension to a correct sentence. In other words
+.RS
+.sp
+<bo sent>	::=	<pbo sent> | <sent>			(3)
+.sp
+.RE
+.LP
+Similarly we introduce
+.sp
+.EQ \*[EQnxt]
+<bo exp> mark ::= <pbo exp> | <exp>
+.EN
+.EQ
+<bo term> lineup ::= <pbo term> | <term>
+.EN
+.sp
+.LP
+Note: A <pbo Y> has \fBnot\fR been defined as a string that by a non-empty extension can be transformed into a <Y>: it has also been required not to be a <Y> all by itself.
+.PP
+In terms of S and the notion <pbo sent> we now specify the desired net effect of \*Qsent\*U by requiring that upon completion
+.RS
+.sp
+.EQ \*[EQnxt]
+S - x = roman "<pbo sent> \fBand\fR"
+.br
+S not equal roman "<pbo sent> \fBand\fR"
+.br
+c = [S = <sent>]
+.br
+.EN
+.sp
+.RE
+.PP
+The first of these terms is required to ensure that not too much has been read, the second guarantees that enough has been read and the final term defines the value of c. Note that specification (6) has been given without taking syntax (1) into account! \fBAll\fR proper initial strings of S are of the syntactical category <pbo sent>: the empty string is, and as soon as reading has progressed such that the first two terms are true, reading stops and c will get its proper value.
+.PP
+In order to proceed with (6) in which that syntactic category <pbo sent> occurs, we derive from the first line of (1)
+.RS
+.br
+<pbo sent>	::=	<bo exp>			(7)
+.br
+.RE
+.LP
+where <bo exp> comprises all expressions and sequences that can be extended to an expression.
+.LP
+(Note: According to (4) it is not excluded that a proper initial string of an expression by itself is an expression!)
+.PP
+Relation (7), together with the first line of the syntax (1) enables us to rewrite the desired net effect of \*Qsent\*U as follows: upon termination of \*Qsent\*U we require
+.RS
+.sp
+.EQ
+S - x = roman "<bo exp> \fBand\fR"
+.br
+S != roman "<bo exp> \fBand\fR"
+.br
+c = left [ S - x = roman "<exp> \fBand\fR semi(x)" right ]			(8)
+.EN
+.sp
+.RE
+.PP
+The second line shows that the concept <bo exp> is related to the complete string S. As a result, when we wish to express \*Qsent\*U in terms of a primitive \*Qexp,\*U whose analysis has to embody the syntactical rules of an <exp> and that shall read a string E, then E and S should be identical.
+.PP
+In terms of a primitive \*Qexp,\*U reading a string E, such that upon termination
+.RS
+.sp
+E - x = <bo exp> \fBand\fR
+.br
+E != <bo exp> \fBand\fR
+.br
+c = [ E - x = <exp> ]			(9)
+.sp
+.RE
+.LP
+the body
+.RS
+.sp
+\fBproc\fR sent: exp; c := c \fBand\fR semi(x) \fBcorp\fR			(10)
+.sp
+.RE
+.LP
+satisfies requirement (8). A formal proof of the correctness of (1) relies on the axiom of assignment only: with post-condition (8) we derive on account of (1) as the post-condition for its call of \*Qexp\*U
+.RS
+.sp
+.EQ
+S - x = roman "<bo exp> \fBand\fR"
+.br
+S != roman "<bo exp> \fBand\fR"
+.br
+c roman "\fBand\fR semi(x)" = left [ S - x = roman "<exp> \fBand\fR semi(x)" right ]
+.br
+.EN
+.RE
+.LP
+which is obviously satisfied by E = S and specification (9). The equality E = S is guaranteed when, prior to its call on \*Qexp,\*U \*Qsent\*U will not command any \*Qmove.\*U It does not: it opens with \*Qexp.\*U
+.PP
+Now we are left with the duty of constructing a recognizer \*Qexp,\*U reading a string E given by the first two lines of (9) and assigning to c the value given by the last line of (9). Because (9) mentions the syntactic category <bo exp>, we had better derive its syntactic definition, now from the second line of the syntax. Syntax (2) is the most convenient and we find\(embecause <operator> is always a single character!\(em
+.RS
+.sp
+<bo exp>	::=	{<term> <operator>} <bo term>			(11)
+.sp
+.RE
+.PP
+The braces\(em\*Qzero or more times\*U\(emsuggest a while loop and therefore we must try to find a convenient invariantn, implied by (9). It is certainly necessary to maintain
+.RS
+.sp
+E - x = <bo exp>
+.sp
+.RE
+.LP
+as this takes care of the requirement that not too much will be read. On account of (11) we can then write
+.RS
+.sp
+.EQ
+E = {roman "<term> <operator>"} T'
+.br
+roman with~~~~T' - x = roman "<bo term>"			(12)
+.EN
+.sp
+.RE
+.PP
+Equation (11) tells us that the necessary and sufficient condition for E = <bo exp> is in terms of T', as given by (12),
+.RS
+.sp
+.EQ
+T' = roman "<bo term> \fBor\fR" T' = roman "<term> <operator>"
+.EN
+.sp
+.RE
+.LP
+The necessary and sufficient condition for $E != roman "<bo exp>"$ is therefore
+.EQ
+T' != roman "<bo term> \fBand\fR" T' != roman "<term> <operator>"
+.EN
+.LP
+or
+.EQ
+T' != roman "<bo term> \fBand non\fR" left [ T' - x = roman "<term> \fBand\fR operator(x)" right ]
+.EN
+.LP
+Furthemore it follows from (12) and the syntax for <exp> that $E - x = roman "<exp>"$ (from the third line of (9)) is equivalent to $T' - x = roman "<term>"$. Therefore we can rewrite (9) as
